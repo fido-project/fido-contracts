@@ -29,7 +29,7 @@ contract FIDO is ERC20Mintable, ERC20Burnable, Ownable {
         operator = _operator;
         emit OperatorshipTransferred(address(0), operator);
         _setupDecimals(18);
-        addReleaseRecipient(0x9Dafc698200B9Bb509612ae39f007855d1c26B3D, 615);
+        addReleaseRecipient(0x9Dafc698200B9Bb509612ae39f007855d1c26B3D, 605);
         addReleaseRecipient(0xAf9736eC4814a2947B7B64354c612A41Be518b9f, 110); 
         addReleaseRecipient(0x6fc89Ac788A31880f020AabA39dB49e05D803670, 100);
         addReleaseRecipient(0x6B8A58B626dE1Aa35b9E24d4e9012E33d7084CD5, 100); // 1%
@@ -53,6 +53,8 @@ contract FIDO is ERC20Mintable, ERC20Burnable, Ownable {
         addReleaseRecipient(0xBe19c8eCf41a3F38664827C89aAD87f16dF3De38, 10);
         addReleaseRecipient(0x1F6361D690789761035585338826E4F89cbA9a44, 10); // 0.1%
         addReleaseRecipient(0xe674816FD0C0e4062B7e43dC72c34cb3023fB825, 10);
+        addReleaseRecipient(0x6924F8E39623a1f5aA776637d2008Ad1c4e16598, 5);
+        addReleaseRecipient(0x979cAE9260C799E73cd320936b5c5A902D291636, 5);
         addReleaseRecipient(0x7Facf41272d5a8c490Cb79CfE84981169259d935, 5);
         addReleaseRecipient(0x0299386481015Ce66FC3818DE9E7d5302FFf5278, 3);
     }
