@@ -9,7 +9,10 @@ import "./ERC20/ERC20Pausable.sol";
 import "./Ownable.sol";
 
 contract MFIL is ERC20Mintable, ERC20Burnable, Ownable {
+    using SafeMath for uint256;
+
     address public operator;
+    uint256 private _cap = 2000000000 * 10**18;
 
     event OperatorshipTransferred(
         address indexed previousOperator,
@@ -57,5 +60,32 @@ contract MFIL is ERC20Mintable, ERC20Burnable, Ownable {
 
     function removeMinter(address minter) external onlyOperator {
         _removeMinter(minter);
+    }
+
+    /**
+     * @dev Returns the cap on the token's total supply.
+     */
+    function cap() public view virtual returns (uint256) {
+        return _cap;
+    }
+
+    /**
+     * @dev See {ERC20-_beforeTokenTransfer}.
+     *
+     * Requirements:
+     *
+     * - minted tokens must not cause the total supply to go over the cap.
+     */
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 amount
+    ) internal virtual override {
+        super._beforeTokenTransfer(from, to, amount);
+
+        if (from == address(0)) {
+            // When minting tokens
+            require(totalSupply().add(amount) <= cap(), "ERC20: cap exceeded");
+        }
     }
 }
